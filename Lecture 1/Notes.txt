@@ -1,0 +1,137 @@
+Date: 12-03-2024
+
+// JS Code to Implement Hello World
+const heading = document.createElement("h1");
+heading.innerHTML = "Hello World from JavaScript";
+const root = document.getElementById("root");
+root.appendChild(heading);
+
+React Developed by Facebook 
+
+Import React in DOM
+    <!-- Google - React CDN -->
+    Insert the Script in Body
+    Link 1: This script provides the core functionality of the React framework.
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+
+    Link 2: This link points to the development version of the ReactDOM library (React version 18). ReactDOM is a package that provides DOM-specific methods that are required for React to interact with the DOM. It allows React components to be rendered into the DOM.
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+What is Cross Origin in the link? e.g.(<script crossorigin src="..."></script>)
+    Cross-origin, in layman's terms, refers to interactions between different websites or web applications. When you visit a website, your browser loads content from that website's domain. Cross-origin occurs when a website tries to request resources, such as images, scripts, or data, from a different domain.
+
+    Imagine you're in one neighborhood (website) and you want to borrow something from another neighborhood (another website). If the neighborhoods are different (cross-origin), there might be rules or limitations on what you can borrow or do. Similarly, browsers have security measures in place to restrict cross-origin interactions to prevent malicious activities like stealing data or executing unauthorized actions. These security measures help ensure the safety and privacy of your browsing experience.
+------------------------------------------------------------------------------------------------------------------------
+
+How to Create React Element
+    index.html
+        <div id="root"></div 
+    App.js
+        const heading = React.createElement("h2", null, "I am H2");
+        const root = ReactDOM.createRoot(document.getElementById("root"));
+        root.render(heading);
+------------------------------------------------------------------------------------------------------------------------
+
+What is Render in React?
+    
+    In React, "render" refers to the process of converting React components into actual DOM elements that are displayed in the browser. When you build a React application, you create components that represent different parts of your user interface. These components describe what should be displayed on the screen.
+------------------------------------------------------------------------------------------------------------------------
+How to create nested element using React
+    <div id="parent">
+        <div id="child">
+            <h1> I am H1 Tag</h1>
+        </div>
+    </div>
+Solution:
+        const parent = React.createElement(
+          "div",
+          { id: "parent" },
+          React.createElement(
+            "div",
+            { id: "child" },
+            React.createElement("h1", {}, "I am h1 Tag")
+          )
+        );
+        const root = ReactDOM.createRoot(document.getElementById("root"));
+        root.render(parent);
+
+------------------------------------------------------------------------------------------------------------------------
+How to create siblings of nested element using React
+    <div id="parent">
+        <div id="child">
+            <h1> I am H1 Tag</h1>
+            <h2> I am H2 Tag</h2>
+        </div>
+    </div>
+Solution
+    const parent = React.createElement(
+    "div",
+    { id: "parent" },
+    React.createElement(
+        "div",
+        { id: "child" },
+        [
+            React.createElement("h1", {}, "I am h1 Tag"),
+            React.createElement("h2", {}, "I am h2 Tag")
+        ]
+    )
+    );
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(parent);
+
+    Pass the Siblings as an array
+        [
+            React.createElement("h1", {}, "I am h1 Tag"),
+            React.createElement("h2", {}, "I am h2 Tag")
+        ]
+------------------------------------------------------------------------------------------------------------------------
+How to create nested child using React
+    <div id="parent">
+        <div id="child1">
+            <h1> I am H1 Tag</h1>
+            <h1> I am H1 Tag</h1>
+        </div>
+        <div id="child2">
+            <h1> I am H1 Tag</h1>
+            <h1> I am H1 Tag</h1>
+        </div>
+    </div>
+Solution
+    const parent = React.createElement(
+      "div",
+      { id: "parent" },
+        [  React.createElement("div", { id: "child1" }, [
+            React.createElement("h1", {}, "I am h1 Tag"),
+            React.createElement("h2", {}, "I am h2 Tag"),
+          ]),
+          React.createElement("div", { id: "child2" }, [
+            React.createElement("h1", {}, "I am h1 Tag"),
+            React.createElement("h2", {}, "I am h2 Tag"),
+          ])]
+
+    );
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(parent);
+
+For writing the code in more cleaner way we use JSX 
+------------------------------------------------------------------------------------------------------------------------
+ 
+When including React and related libraries via a CDN (Content Delivery Network) link, it's crucial to maintain a specific order to ensure that everything works as expected. Typically, you'd want to include the libraries in the following order:
+
+    React: This is the core React library.
+    React DOM: This library is necessary for rendering React components in the DOM.
+    Babel Standalone: If you're writing JSX directly in your HTML files, you need Babel to transpile JSX into regular JavaScript that the browser can understand.
+------------------------------------------------------------------------------------------------------------------------
+
+If we place the content inside an element with the ID "root" like this:
+    <div id="root">
+        <!-- <h1>Hello World</h1> -->
+    </div>
+And then we execute the following React code:
+    const heading = React.createElement("h2", null, "I am H2");
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(heading);
+What will be the resulting output?
+Solution:
+    The resulting output will be the rendering of an <h2> element with the text "I am H2" inside the element with the ID "root". Any previous content within the "root" element would be replaced by this newly rendered <h2> element.
+
